@@ -17,8 +17,8 @@ using NBTensor8UC1 = nb::tensor<nb::numpy, uint8_t, nb::shape<nb::any, nb::any>,
 
 cv::Mat ConvertNBTensorToCVMat8CU3(NBTensor8UC3 &tensor)
 {
-    int32_t image_width = tensor.shape(0);
-    int32_t image_height = tensor.shape(1);
+    int32_t image_width = tensor.shape(1);
+    int32_t image_height = tensor.shape(0);
     cv::Mat cv_mat = cv::Mat::zeros(cv::Size(image_width, image_height), CV_8UC3);
     for (size_t v = 0; v < image_height; ++v)
     {
@@ -37,7 +37,7 @@ NBTensor8UC3 ConvertCVMat8CU3ToNBTensor(const cv::Mat &cv_mat)
 {
     int32_t image_width = cv_mat.cols;
     int32_t image_height = cv_mat.rows;
-    size_t shape[3] = {image_width, image_height, 3};
+    size_t shape[3] = {image_height, image_width, 3};
 
     uint8_t *data = new uint8_t[image_width * image_height * 3]{0};
     nb::capsule deleter(data, [](void *data) noexcept
