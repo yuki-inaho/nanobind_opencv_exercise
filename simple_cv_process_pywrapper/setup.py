@@ -15,7 +15,7 @@ setup(
     version="0.0.1",
     packages=["simple_cv_process_pywrapper"],
     package_dir={"": "src"},
-    cmake_args=["-DCMAKE_BUILD_TYPE=Debug"],
+    cmake_args=["-DCMAKE_BUILD_TYPE=Release"],
     cmake_install_dir="src/simple_cv_process_pywrapper",
     include_package_data=True,
     python_requires=">=3.8"
