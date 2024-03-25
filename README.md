@@ -5,8 +5,7 @@
 ```
 git submodule update --init --recursive
 cd simple_cv_process_pywrapper
-mkdir -p build && cd build
-cmake .. && make -j
+pip install .
 ```
 
 # Run an example
