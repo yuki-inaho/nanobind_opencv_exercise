@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 from pathlib import Path
 import simple_cv_process_pywrapper as cvp
 
@@ -15,12 +14,7 @@ def main():
         raise FileNotFoundError(f"Image not found: {image_path}")
 
     # Convert the OpenCV BGR image to RGB using the C++ function.
-    # Note: OpenCV images are NumPy arrays, so this conversion is straightforward.
     image_rgb = cvp.bgr2rgb(image_bgr)
-
-    # Convert back to uint8 if necessary. This step might be redundant depending
-    # on how your C++ function is implemented, but is a common step when manipulating images.
-    image_rgb = np.clip(image_rgb, 0, 255).astype(np.uint8)
 
     # Display the original BGR image and the converted RGB image side by side
     concatenated_image = cv2.hconcat([image_bgr, image_rgb])
