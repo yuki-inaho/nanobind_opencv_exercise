@@ -1,1 +1,1 @@
-from .simple_cv_process_pywrapper_impl import bgr2rgb
+from .simple_cv_process_pywrapper_impl import *

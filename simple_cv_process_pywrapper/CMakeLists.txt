@@ -1,3 +1,4 @@
+# simple_cv_process_pywrapper/CMakeLists.txt
 project(simple_cv_process_pywrapper)
 cmake_minimum_required(VERSION 3.18...3.22)
 
@@ -6,6 +7,10 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE "Release")
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
+
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options(-Wall -Wextra)
 add_compile_options(
@@ -35,16 +40,8 @@ endif()
 
 find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 
-# Run `nanobind.cmake_dir()` from Python to detect install location
-execute_process(
-  COMMAND
-  "${PYTHON_EXECUTABLE}" -c "import nanobind; print(nanobind.cmake_dir())"
-  OUTPUT_VARIABLE _tmp_dir
-  OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ECHO STDOUT)
-list(APPEND CMAKE_PREFIX_PATH "${_tmp_dir}")
-
-# Now import nanobind from CMake
-find_package(nanobind CONFIG REQUIRED)
+# Add submodule
+add_subdirectory(../external/nanobind nanobind)
 
 # Load OpenCV
 find_package(OpenCV REQUIRED)
@@ -58,6 +55,7 @@ nanobind_add_module(
 
 target_include_directories(simple_cv_process_pywrapper_impl
   PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
   ${OpenCV_INCLUDE_DIRS}
 )
 

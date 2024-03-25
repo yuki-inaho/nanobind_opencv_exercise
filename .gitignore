@@ -6,3 +6,4 @@
 sample_pywrapper/src/sample_pywrapper/
 *.egg-info/
 *.so
+pyproject.tomlx
