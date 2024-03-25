@@ -1,4 +1,4 @@
-# nanobind_opencv_exercise
+# nanobind_opencv_pywrapper_exercise
 ![peppers](https://github.com/yuki-inaho/nanobind_opencv_exercise/blob/main/doc/output.png)
 
 # Build
