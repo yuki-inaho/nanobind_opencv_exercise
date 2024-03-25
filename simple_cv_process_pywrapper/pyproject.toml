@@ -5,6 +5,7 @@ requires = [
     "scikit-build",
     "cmake>=3.17",
     "ninja",
+    "nanobind==1.9.2",
     "typing_extensions",
 ]
 
